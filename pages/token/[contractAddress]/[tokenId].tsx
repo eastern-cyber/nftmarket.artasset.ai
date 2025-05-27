@@ -102,14 +102,15 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
                     <Box>
                         <Text fontWeight={"bold"}>Traits:</Text>
                         <SimpleGrid columns={2} spacing={4}>
-                        {Object.entries(nft?.metadata?.attributes || {}).map(
-                        ([key, value]) => (
-                            <Flex key={key} direction={"column"} alignItems={"center"} justifyContent={"center"} borderWidth={1} p={"8px"} borderRadius={"4px"}>
-                                <Text fontSize={"small"}>{value.trait_type}</Text>
-                                <Text fontSize={"small"} fontWeight={"bold"}>{value.value}</Text>
-                            </Flex>
-                        )
+                        {Array.isArray(nft?.metadata?.attributes) && nft.metadata.attributes.map(
+                            (attr: any, index: number) => (
+                                <Flex key={index} direction={"column"} alignItems={"center"} justifyContent={"center"} borderWidth={1} p={"8px"} borderRadius={"4px"}>
+                                    <Text fontSize={"small"}>{String(attr.trait_type)}</Text>
+                                    <Text fontSize={"small"} fontWeight={"bold"}>{String(attr.value)}</Text>
+                                </Flex>
+                            )
                         )}
+
                         </SimpleGrid>
                     </Box>
                 </Stack>
