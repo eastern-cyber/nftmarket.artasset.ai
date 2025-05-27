@@ -21,11 +21,11 @@ export function Navbar() {
                 </Flex>
                 <Flex dir={"row"} alignItems={"center"}>
                     <ConnectWallet/>
-                    {address && (
+                    {/* {address && (
                         <Link as={NextLink} href={`/profile/${address}`}>
                             <Avatar src='https://bit.ly/broken-link' ml={"20px"}/>
                         </Link>
-                    )}
+                    )} */}
                 </Flex>
             </Flex>
         </Box>

@@ -6,10 +6,17 @@ import {
 } from "../const/addresses";
 import { ThirdwebNftMedia, useContract, useValidDirectListings, useValidEnglishAuctions } from "@thirdweb-dev/react";
 import { Box, Flex, Skeleton, Text } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 
 type Props = {
     nft: NFT;
 };
+
+
+function resolveIPFS(url: string | undefined) {
+    if (!url) return "";
+    return url.replace("ipfs://", "https://ipfs.io/ipfs/");
+    }
 
 export default function NFTComponent({ nft }: Props) {
     const  {contract: marketplace, isLoading: loadingMarketplace } = useContract(MARKETPLACE_ADDRESS, "marketplace-v3");
@@ -30,7 +37,15 @@ export default function NFTComponent({ nft }: Props) {
     return (
         <Flex direction={"column"} backgroundColor={"#EEE"} justifyContent={"center"} padding={"2.5"} borderRadius={"6px"} borderColor={"lightgray"} borderWidth={1}>
             <Box borderRadius={"4px"} overflow={"hidden"}>
-                <ThirdwebNftMedia metadata={nft.metadata} height={"100%"} width={"100%"} />
+                {/* <ThirdwebNftMedia metadata={nft.metadata} height={"100%"} width={"100%"} /> */}
+                <Image
+                src={resolveIPFS(nft.metadata.image)}
+                alt={nft.metadata.name}
+                width="100%"
+                height="100%"
+                objectFit="cover"
+                fallbackSrc="/placeholder.png" // optional fallback
+                />
             </Box>
             <Text fontSize={"small"} color={"darkgray"}>Token ID #{nft.metadata.id}</Text>
             <Text fontWeight={"bold"}>{nft.metadata.name}</Text>

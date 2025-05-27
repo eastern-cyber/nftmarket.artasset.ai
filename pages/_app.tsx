@@ -11,14 +11,7 @@ const activeChain = "polygon";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThirdwebProvider 
-      activeChain={activeChain}
-      sdkOptions={{
-        storage: {
-          ipfsGatewayUrl: "https://ipfs.io/ipfs/",
-        },
-      }}
-    >
+<ThirdwebProvider>
       <ChakraProvider>
         <Navbar />
         <Component {...pageProps} />
