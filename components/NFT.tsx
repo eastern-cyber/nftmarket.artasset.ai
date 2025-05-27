@@ -39,8 +39,8 @@ export default function NFTComponent({ nft }: Props) {
             <Box borderRadius={"4px"} overflow={"hidden"}>
                 {/* <ThirdwebNftMedia metadata={nft.metadata} height={"100%"} width={"100%"} /> */}
                 <Image
-                src={resolveIPFS(nft.metadata.image)}
-                alt={nft.metadata.name}
+                src={resolveIPFS(nft.metadata.image ?? undefined)}
+                alt={String(nft.metadata.name ?? "NFT Image")}
                 width="100%"
                 height="100%"
                 objectFit="cover"
